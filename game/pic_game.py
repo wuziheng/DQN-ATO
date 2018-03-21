@@ -162,7 +162,7 @@ if __name__ == "__main__":
     # one-hot code form of input
     du = [[0, 0, 0, 1, 0],
           [0, 1, 0, 0, 0],
-          [1, 0, 0, 0, 0]] 
+          [1, 0, 0, 0, 0]]
     du = np.array(du)
     for i in range(3):
         game.step(d_u=du[i])
