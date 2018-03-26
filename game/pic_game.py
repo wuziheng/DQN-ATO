@@ -64,16 +64,15 @@ class Game(object):
         d_u = np.sum(d_u * self.actions)
         self.u += d_u
 
-        # calculate next state velocity according to train_model with changed u(force) and now velocity
+        " calculate next state velocity according to train_model with changed u(force) and now velocity"
         self.v = train_model(self.t, self.v, self.u)
 
-        # update t,dd_v,d_v,d_u(time_point, deviation of acceleration, velocity, u(traction force))
         self.t += 1
         self.dd_v = abs(self.v - target_v(self.t)) - abs(self.d_v)
         self.d_v = self.v - target_v(self.t)
         self.d_u = self.u - target_u(self.t)
 
-        # get render state(image)
+        " get render state(image)"
         self.observation = self._get_observation()
         self.terminal = abs(self.d_v) > CRASH_LIMIT or self.t >= self.end_point
         reward = self._get_reward()
@@ -99,23 +98,23 @@ class Game(object):
 
         img = np.zeros(self.input_shape, dtype='uint8')
 
-        # render the background
+        " render the background "
         for i in range(int(self.input_shape[1] * pixel_t)):
             img[int(i / pixel_v):int((i + 1) / pixel_v), :] = (top - i) * 10
 
-        # render the mid feasible domain
+        " render the mid feasible domain "
         for i in range(len(v_target)):
             mid = int((v_target[i] - bottom) / pixel_v)
             img[self.input_shape[0] - mid - int(CRASH_LIMIT / pixel_v):self.input_shape[0] - mid + int(
                 CRASH_LIMIT / pixel_v),
             int(i / pixel_t):int((i + 1) / pixel_t)] = 0
 
-        # make sure train is now in image and render it
+        " make sure train is now in image and render it"
         train_mid = int((self.v - bottom) / pixel_v)
         if 80 > train_mid > 0:
             img[80 - train_mid - 1:80 - train_mid + 1, 4:6] = 255
 
-        # stack 4 image to one
+        " stack 4 image to one"
         img = np.array(img)
         img = np.stack((img, img, img, img), axis=2)
         self.observation = img

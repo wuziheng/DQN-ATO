@@ -13,8 +13,7 @@ import tensorflow as tf
 from config import Config
 import math
 
-# CONV_WEIGHT_DECAY = 0.00004
-# FC_WEIGHT_DECAY = 0.00004
+
 CONV_WEIGHT_DECAY = 0
 FC_WEIGHT_DECAY = 0
 FC_WEIGHT_STDDEV = 0.01
