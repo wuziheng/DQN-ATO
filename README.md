@@ -50,7 +50,7 @@
 2. 蓝色带中黑点则表示了该时刻列车的速度。(处在的时刻点和速度)
 3. 不同的速度，背景颜色（数值）也是不同的。
 
-**生成图像的过程示例和所需要的参数如下：**![translate](/home/wzh/Desktop/dqn_ato/fig/translate.png)
+**生成图像的过程示例和所需要的参数如下：**![translate](fig/translate.png)
 
 ##### 优点：　
 
@@ -155,7 +155,7 @@ Q-learning是一种用在在状态跳转的游戏下获取最大收益目标的�
 
 
 
-![chart](/home/wzh/Desktop/dqn_ato/fig/chart.png)
+![chart](fig/chart.png)
 
 
 
@@ -256,15 +256,15 @@ def train_network(s, readout, sess):
 
 到这里，基本的基于DQN设计的，对特定列车模型的控制算法生成算法已经搭建起来了。之后第二篇文章我们添加了阶梯控制，加大了控制的状态空间，提升了效果。具体的内容可以参考论文，下面放一张框图解释一下区别：
 
-![step_control](/home/wzh/Desktop/dqn_ato/fig/step_control.png)
+![step_control](fig/step_control.png)
 
 阶梯控制是列车控制算法里常用的技巧，在框图的右侧，实际上我们可以理解为扩大了列车控制的动作状态空间，使得动作更为精细，而需要决策的动作序列也更长，学习难度加大，但理论效果得以提升。在添加阶梯控制之前，算法对的控制结果存在明显难以消除的震荡，添加后消除震荡效果明显。
 
-![step](/home/wzh/Desktop/dqn_ato/fig/step.png)
+![step](fig/step.png)
 
 实际上的效果比对比图更好。同时我们可以观察一下生成的控制算法对加减速的过程控制，效果如下
 
-![view](/home/wzh/Desktop/dqn_ato/fig/view.png)
+![view](fig/view.png)
 
 基本可以稳定控制贴合需求曲线，而且在没有明显的超调（这个是什么我基本忘了，妹子说的）。
 
